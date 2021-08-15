@@ -11,6 +11,7 @@ namespace TrueDevice
         {
             CreateMap<UserRegisterDto, User>();
             CreateMap<RegisterDeviceDto, Device>();
+            CreateMap<Device,GetSingleDeviceDto>();
         }
         
     }

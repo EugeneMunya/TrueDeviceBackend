@@ -1,9 +1,12 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace TrueDevice.Models
 {
     public class Device
     {
         public int Id{get;set;}
         public string DeviceName{get;set;}
+        [Required]
         public string SerialNumber{get;set;}
         public string MackAddress{get;set;}
         public string Imei{get;set;}

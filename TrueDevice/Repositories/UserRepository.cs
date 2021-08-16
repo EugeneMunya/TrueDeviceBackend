@@ -28,18 +28,27 @@ namespace TrueDevice.Repositories
         public async Task<ServiceResponse<string>> Register(User newUser, string password)
         {
           ServiceResponse<string> response = new ServiceResponse<string>();
-          if(await UserExists(newUser.IdNumber))
+          try
           {
-              response.Success=false;
-              response.Message="User already exisit";
-              return response;
+              if(await UserExists(newUser.IdNumber))
+               {
+                   response.Success=false;
+                   response.Message="User already exisit";
+                   return response;
+                }
+                 CreateHashPassword(password, out byte[] passwordHash, out byte[] passwordSalt);
+                 newUser.PasswordHash= passwordHash;
+                 newUser.HasSalt= passwordSalt;
+                 await _context.Users.AddAsync(newUser);
+                 await _context.SaveChangesAsync();
+                 response.Data=CreateToken(newUser);
           }
-          CreateHashPassword(password, out byte[] passwordHash, out byte[] passwordSalt);
-          newUser.PasswordHash= passwordHash;
-          newUser.HasSalt= passwordSalt;
-          await _context.Users.AddAsync(newUser);
-          await _context.SaveChangesAsync();
-          response.Data=CreateToken(newUser);
+          catch (System.Exception ex)
+          {
+               response.Success=false;
+               response.Message=ex.Message;
+          }
+         
           return response;
         }
         public async Task<ServiceResponse<string>> Login(string idNumber, string password)

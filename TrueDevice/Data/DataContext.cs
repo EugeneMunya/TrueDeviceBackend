@@ -15,6 +15,10 @@ namespace TrueDevice.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().Property(user => user.Role).HasDefaultValue("User");
+            modelBuilder.Entity<User>().HasIndex(user => user.IdNumber).IsUnique();
+            modelBuilder.Entity<Device>().HasIndex(device => device.SerialNumber).IsUnique();
+            modelBuilder.Entity<Device>().HasIndex(device => device.MackAddress).IsUnique();
+            modelBuilder.Entity<Device>().HasIndex(device => device.Imei).IsUnique();
         }
     }
 }

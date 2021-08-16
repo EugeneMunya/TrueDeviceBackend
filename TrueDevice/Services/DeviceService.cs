@@ -28,8 +28,17 @@ namespace TrueDevice.Services
         public async Task<ServiceResponse<List<Device>>> GetAllDevices()
         {
             ServiceResponse<List<Device>> response = new ServiceResponse<List<Device>>();
-            List<Device> devices = await _context.Devices.Where(device => device.User.Id==GetUserId()).ToListAsync();
-            response.Data=devices;
+            try
+            {
+                List<Device> devices = await _context.Devices.Where(device => device.User.Id==GetUserId()).ToListAsync();
+                response.Data=devices;
+                
+            }
+            catch (System.Exception ex)
+            {
+                 response.Success=false;
+                 response.Message=ex.Message;
+            }
 
             return response;
         }
@@ -37,8 +46,16 @@ namespace TrueDevice.Services
         public async Task<ServiceResponse<GetSingleDeviceDto>> GetDeviceById(int id)
         {
             ServiceResponse<GetSingleDeviceDto> response = new ServiceResponse<GetSingleDeviceDto>();
-            Device device = await _context.Devices.FirstAsync(device =>device.Id==id && device.User.Id==GetUserId());
-            response.Data= _mapper.Map<GetSingleDeviceDto>(device);
+            try
+            {
+                 Device device = await _context.Devices.FirstAsync(device =>device.Id==id && device.User.Id==GetUserId());
+                 response.Data= _mapper.Map<GetSingleDeviceDto>(device);
+            }
+            catch (System.Exception ex)
+            {
+                 response.Success=false;
+                 response.Message=ex.Message;
+            }
             return response;
         }
 
@@ -66,6 +83,33 @@ namespace TrueDevice.Services
                 response.Message=ex.Message;
            }
             return response;
+        }
+        public async Task<ServiceResponse<string>> ExchangeDevice(int id, string IdNumer)
+        {
+            ServiceResponse<string> response = new ServiceResponse<string>();
+            try
+            {
+                Device device = await _context.Devices.FirstAsync(device =>device.Id==id && device.User.Id==GetUserId());
+                User user = await _context.Users.FirstOrDefaultAsync(user => user.IdNumber==IdNumer);
+                if(user==null)
+                {
+                    response.Success=false;
+                    response.Message="User not found";
+                    return response;
+                }
+                device.User = user;
+                _context.Devices.Update(device);
+                await _context.SaveChangesAsync();
+                response.Data=device.SerialNumber;
+                response.Message=$"For now {user.FirstName} is the owner of {device.SerialNumber} device";
+                
+            }
+            catch (System.Exception ex)
+            {
+                 response.Success=false;
+                 response.Message=ex.Message;
+            }
+             return response;
         }
     }
 }

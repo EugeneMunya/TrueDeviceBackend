@@ -26,6 +26,10 @@ namespace TrueDevice.Controllers
                 IdNumber = request.IdNumber,
             };
             ServiceResponse<string> response = await _userRepository.Register(user,request.Password);
+            if(!response.Success)
+            {
+                return BadRequest(response);
+            }
             return Ok(response);            
         }
 
@@ -33,6 +37,10 @@ namespace TrueDevice.Controllers
         public async Task<IActionResult> UserLogin(UserLoginDto request)
         {
             ServiceResponse<string> response = await _userRepository.Login(request.IdNumber,request.Password);
+            if(!response.Success)
+            {
+                return BadRequest(response);
+            }
             return Ok(response);
         }
 

@@ -1,6 +1,6 @@
 # TrueDeviceBackend
 
-We need to help people to save their electronic devices unique information using this application so that their devices can be restored very quickly when they are stolen, and also to avoid people buying stolend gadges by for them verifying the device owner using this apllication.
+We need to help people to manage unique information for heir electronic devices using this application so that their devices can be restored very quickly when they are stolen, we also need to avoid people for buying stolend gadges, where they will use this application to verify the device owner before they pay.
 
 # Technologyies
 -.NET5.0

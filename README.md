@@ -16,7 +16,7 @@ Application that manages devices unique information.
 # Testing 
 - Pull docker image ```docker pull munya250/truedevice```
 - Build container from the image ```docker-compse up -d```
-- Visit ```localhost:80/swagger``` in your browser or user postman
+- Visit ```localhost:80/swagger``` in your browser or use postman
 
 
 

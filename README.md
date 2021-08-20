@@ -1,6 +1,6 @@
 # TrueDeviceBackend
 
-Application that manages devices unique infortation.
+Application that manages devices unique information.
 
 # Technologyies
 - .NET5.0

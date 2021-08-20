@@ -3,9 +3,9 @@
 Application that manages devices unique infortation.
 
 # Technologyies
--.NET5.0
--SQL SERVER
--DOCKER
+- .NET5.0
+- SQL SERVER
+- DOCKER
 # Architecture Design
 * Docker compose
   * webapi container
@@ -16,7 +16,7 @@ Application that manages devices unique infortation.
 # Testing 
 - Pull docker image ```docker pull munya250/truedevice:latest```
 - Build container from the image ```docker-compse up -d```
-- Visit ```localhost:80/swagger``` in your browser
+- Visit ```localhost:80/swagger``` in your browser or user postman
 
 
 

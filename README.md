@@ -11,7 +11,7 @@ Application that manages devices unique infortation.
   * webapi container
   * sqlserver container
 # Docker image
-[TrueDevice image](https://hub.docker.com/repository/docker/munya250/truedevice)
+[TrueDevice image](https://hub.docker.com/r/munya250/truedevice)
 
 # Testing 
 - Pull docker image ```docker pull munya250/truedevice:latest```

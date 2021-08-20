@@ -6,7 +6,7 @@ We need to help people to save their electronic devices unique information using
 -.NET5.0
 -SQL SERVER
 -DOCKER
-# Archtectur Design
+# Architecture Design
 * Docker compose
   * webapi container
   * sqlserver container

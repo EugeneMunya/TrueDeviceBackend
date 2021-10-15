@@ -2,7 +2,7 @@
 
 Application that manages devices unique information.
 
-# Technologyies
+# Technologies
 - .NET5.0
 - SQL SERVER
 - DOCKER

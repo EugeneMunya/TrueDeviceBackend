@@ -8,7 +8,7 @@ Application that manages devices unique information.
 - DOCKER
 # Architecture Design
 * Docker compose
-  * webapi container
+  * webApi container
   * sqlserver container
 # Docker image
 [TrueDevice image](https://hub.docker.com/r/munya250/truedevice)
